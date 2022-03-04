@@ -5,20 +5,20 @@ function App() {
   const [posts,setPosts] = useState([
     {
       imgAvatar:"/static/image/avatar/avatar (0).png", 
-      username:'nilay', 
-      caption:'hiiiiii', 
+      username:"nilay", 
+      caption:"hiiiiii", 
       imageUrl:"/static/image/post (2).jpg"
     },
     {
-      imgAvatar:"/static/image/avatar/avatar (5).png", 
-      username:'black', 
-      caption:'widow', 
+      imgAvatar:"/static/image/avatar/avatar (5).jpg", 
+      username:"black", 
+      caption:"widow", 
       imageUrl:"/static/image/post (3).jpg"
     },
     {
-      imgAvatar:"/static/image/avatar/avatar (6).png", 
-      username:'Orange', 
-      caption:'qwerty', 
+      imgAvatar:"/static/image/avatar/avatar (6).jpg", 
+      username:"Orange", 
+      caption:"qwerty", 
       imageUrl:"/static/image/post (1).jpg"
     }
   ]);
@@ -35,9 +35,9 @@ function App() {
       <h1>fml</h1>
       <div className=''>
         {
-          posts.map(post => {
+          posts.map(post => (
             <Post imgAvatar={post.imgAvatar} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
-          })
+          ))
         }
         
         {/* <Post imgAvatar="/static/image/avatar/avatar (0).png" username='nilay' caption='hiiiiii' imageUrl="/static/image/post (2).jpg" />
