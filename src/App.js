@@ -39,11 +39,6 @@ function App() {
             <Post imgAvatar={post.imgAvatar} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
           ))
         }
-        
-        {/* <Post imgAvatar="/static/image/avatar/avatar (0).png" username='nilay' caption='hiiiiii' imageUrl="/static/image/post (2).jpg" />
-        <Post imgAvatar="/static/image/avatar/avatar (5).jpg" username='Orange' caption='qwerty' imageUrl="/static/image/post (1).jpg"/>
-        <Post imgAvatar="/static/image/avatar/avatar (6).jpg" username='black' caption='widow' imageUrl="/static/image/post (3).jpg" />   */}
-
       </div>
       
     </div>
