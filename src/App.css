@@ -18,14 +18,28 @@
 }
 .app__header{
   object-fit: contain; 
-  background-color: #323232;
+  background-color: white;
   border-bottom: 1px #282828;
-
 }
-/* .app__headerImage{
-  object-fit: contain; 
-  padding: 0px 0px 0px 0px; 
+.app__header1{
+  
+  max-width: 108px;
+  max-height: 50px;
 }
+.app__headerImage{
+  
+  width: 100%;
+  margin-top: 2px;
+  
+	object-fit: content;
+ 
+}
+.app__signup{
+  display: flex;
+  flex-direction: column;
+  
+}
+/*
 .app__headerLogo{
   font-family: 'Outline';
   color:  linear-gradient(145deg,#ec9f05,#f53803 ,#ff4e00,rgb(255, 72, 0));  
