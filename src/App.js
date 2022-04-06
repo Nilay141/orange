@@ -5,6 +5,7 @@ import { db, auth } from './firebase.js';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import {Button, Input} from '@mui/material';
+import ImageUpload from './ImageUpload.js';
 
 const style = {
   position: 'absolute',
@@ -20,26 +21,7 @@ const style = {
 };
 
 function App() {
-  const [posts,setPosts] = useState([
-    // {
-    //   imgAvatar:"/static/image/avatar/avatar (0).png", 
-    //   username:"nilay", 
-    //   caption:"hiiiiii", 
-    //   imageUrl:"/static/image/post (2).jpg"
-    // },
-    // {
-    //   imgAvatar:"/static/image/avatar/avatar (5).jpg", 
-    //   username:"black", 
-    //   caption:"widow", 
-    //   imageUrl:"/static/image/post (3).jpg"
-    // },
-    // {
-    //   imgAvatar:"/static/image/avatar/avatar (6).jpg", 
-    //   username:"Orange", 
-    //   caption:"qwerty", 
-    //   imageUrl:"/static/image/post (1).jpg"
-    // }
-  ]);
+  const [posts,setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
   const handleLogin = () => setOpenSignIn(true);
@@ -54,7 +36,7 @@ function App() {
 
 // useEffect is like run on condition
   useEffect(() =>{
-    const unsubcribe = auth.onAuthStateChanged((authUser) =>{
+    const unsubscribe = auth.onAuthStateChanged((authUser) =>{
       if(authUser){
         //user logged in
         console.log(authUser);
@@ -66,9 +48,8 @@ function App() {
     })
 
     return () => {
-      unsubcribe();
+      unsubscribe();
     }
-
   },[user,username])
 
   useEffect(() => {
@@ -76,7 +57,7 @@ function App() {
    -fetch from firebase
    -onsnaphot fire code every time change happens
    */
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts').onSnapshot(snapshot => {  //orderBy('timestamp','desc').
       setPosts(snapshot.docs.map(doc => ({
         id:doc.id,
         post: doc.data()
@@ -91,13 +72,11 @@ function App() {
     .createUserWithEmailAndPassword(email, password)
     .then((authUser) => {
       return authUser.user.updateProfile({
-        diaplayName:username
+        displayName:username
       })
     })
-    .catch((error) => alert(error.message))
-
+    .catch((error) => error.message)
     setOpen(false);
-
   }
 
   const signIn =(event) =>{
@@ -207,18 +186,39 @@ function App() {
             <Button onClick={handleSignUp}>Sign Up</Button>
           </div>
         )}
-        
-        
       </div>
-      <h1>fml</h1>
-      <div className=''>
+
+      {/* <div className="app__posts">
+        <div className="app__postsLeft">
+          {posts.map(({ id, posts }) => (
+            <Post
+              //postId={id}
+              //user={user}
+              key={id}
+              username={posts.username}
+              caption={posts.caption}
+              imageUrl={posts.imageUrl}
+            />
+          ))}
+        </div>
+      </div>  */}
+
+      <div className="app__posts">
         {
           posts.map(({id, post}) => (
             // adding id will not rerender old post
-            <Post key={id} imgAvatar={post.imgAvatar} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+            <Post key={id}  username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
           ))
         }
       </div>
+      
+      {user?.displayName ? (
+        <ImageUpload username={user.displayname}/>
+      ):(
+        <h3>Login to continue..</h3>
+      )}
+      
+      
       
     </div>
   );

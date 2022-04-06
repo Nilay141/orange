@@ -22,25 +22,23 @@
   border-bottom: 1px #282828;
 }
 .app__header1{
-  
   max-width: 108px;
   max-height: 50px;
 }
 .app__headerImage{
-  
   width: 100%;
-  margin-top: 2px;
-  
+  margin-top: 2px;  
 	object-fit: content;
- 
 }
 .app__signup{
   display: flex;
   flex-direction: column;
-  
 }
-/*
-.app__headerLogo{
-  font-family: 'Outline';
-  color:  linear-gradient(145deg,#ec9f05,#f53803 ,#ff4e00,rgb(255, 72, 0));  
-} */
+.app__posts {
+  padding: 20px;
+  justify-content: center;
+}
+.app__postsRight {
+  margin-left: 20px;
+}
+
